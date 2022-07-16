@@ -1,0 +1,25 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Enter your Team Info
+            </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+                <mat-form-field>
+                    <mat-label>Team Name</mat-label>
+                    <input matInput placeholder="team name" [(ngModel)]="playerInfo.teamName">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="email" [(ngModel)]="playerInfo.email">
+                </mat-form-field>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="confirmParicipation()">Confirm your Participation</button>
+                    <button mat-raised-button color="primary" (click)="close()">Cancel</button>
+                </mat-card-actions>    
+        </mat-card-content>
+    </mat-card>
+</div>

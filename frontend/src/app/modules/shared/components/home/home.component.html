@@ -1,0 +1,18 @@
+<div class="container">
+   
+        <mat-card *ngFor="let quiz of allQuizzes" class="card mat-elevation-z8">
+            <mat-card-content>
+                <div class="bg-img">
+                <img mat-card-image src="../../../../../assets/background.png" alt="background">
+                </div>
+                <p>Organization name: {{quiz.organizationName}}</p>
+                <p>Event name: {{quiz.eventName}}</p>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-raised-button color="primary" (click)="participate(quiz)">Participate</button>
+            </mat-card-actions>
+        </mat-card>
+   
+
+</div>
+

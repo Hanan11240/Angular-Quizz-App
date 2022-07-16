@@ -1,0 +1,57 @@
+
+
+
+
+  <mat-toolbar>
+    <button (click)="opened=!opened" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button>
+      <mat-icon (click)="logout()">logout</mat-icon>
+    </button>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    
+ 
+    <mat-sidenav [(opened)]="opened" mode="over">
+       <mat-list>
+        
+        <mat-list-item  class="list">
+          <mat-icon>home</mat-icon>
+          <a class="home" [routerLink]="'/home'">Home</a>
+        </mat-list-item>
+
+        <mat-list-item  class="list">
+          <mat-icon>add</mat-icon>
+          <a [routerLink]="'/admin/add-quiz'">Add Quiz</a>
+        </mat-list-item>
+
+        <mat-list-item  class="list">
+          <mat-icon>add</mat-icon>
+          <a [routerLink]="'/add-teams'">Add Teams </a>
+      </mat-list-item>
+
+        <mat-list-item  class="list">
+          <mat-icon>dashboard</mat-icon>
+          <a [routerLink]="'/admin-dashboard'">Dashboard</a>
+        </mat-list-item>
+
+        <mat-list-item  class="list">
+          <mat-icon>login</mat-icon>
+          <a [routerLink]="'/authenticate'">login</a>
+      </mat-list-item>
+       </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+   
+      <router-outlet></router-outlet> 
+    
+         
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+ 
+
+ 

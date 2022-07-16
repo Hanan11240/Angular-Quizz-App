@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+    width: 100vw;
+}
+
+mat-tab-group{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}

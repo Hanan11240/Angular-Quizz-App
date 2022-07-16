@@ -1,0 +1,40 @@
+
+
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <p>Organization Name:  {{quizInfo[0]?.organizationName}}</p>
+                <p>Event Name:  {{quizInfo[0]?.eventName}}</p>
+                <p>Total Questions:  {{quizInfo[0]?.totalQuestions}}</p>
+                <p>Created:{{quizInfo[0]?.createdAt | date}}</p>
+               
+            </mat-card-title>
+        </mat-card-header>
+     
+        <mat-card-content class="content">
+            <div>
+                <h1>
+                Q{{questionNo -1}} {{quizInfo[0]?.quizBank[0].question}}
+                <!-- <p class="time">{{minutes}}:{{remainSeconds}}</p> -->
+
+                </h1>
+            </div>
+            <div class="images" *ngIf="quizInfo[0]?.quizBank[0]?.type=='faceRecognition'">
+                <img  mat-card-image [src]="image" alt="img">
+
+            </div>
+                <mat-radio-group  [(ngModel)]="response.response" > 
+                    <mat-radio-button *ngFor="let option of quizInfo[0]?.quizBank[0]?.options" [value]="option" >
+                            {{option}}
+                    </mat-radio-button>
+                </mat-radio-group>
+           <mat-card-actions align="end">
+                        <button mat-raised-button  *ngIf="questionNo <= quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="getQuiz()">Save and Next</button>
+                        <button mat-raised-button *ngIf="questionNo > quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="submitResponse()">Submit</button>
+                        <button mat-raised-button color="primary" [disabled]="!responseSaved"  (click)="save()">Save response</button>
+                        
+           </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</div>

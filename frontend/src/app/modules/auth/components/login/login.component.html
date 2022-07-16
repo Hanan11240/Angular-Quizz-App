@@ -1,0 +1,24 @@
+<div class="container">
+   
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email" [(ngModel)]="authModel.email" >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Paswword</mat-label>
+            <input matInput placeholder="Password" type="password" [(ngModel)]="authModel.password">
+        </mat-form-field>
+       
+
+        <mat-card-actions align="end">
+            
+            <button mat-raised-button color="primary" (click)="login()">Login</button>
+        </mat-card-actions>
+
+    </mat-card-content>
+
+
+ 
+</div>

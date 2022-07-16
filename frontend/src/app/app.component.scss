@@ -1,0 +1,46 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+
+mat-sidenav-container{
+    height: 100vh
+}
+
+
+mat-sidenav{
+    width: 200px;
+    background-color: #2f4050;
+    color: white;
+    
+
+}
+.list{
+    color: white;
+    display: flex; 
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    // display: flex;
+    margin-left: 5px;
+  
+}
+
+mat-toolbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #8ea4bd;
+}
+
+
+mat-toolbar >button{
+    background: none;
+    border: none;
+    cursor: pointer
+}
+
+.home{
+    margin-top:4px;
+}

@@ -1,0 +1,176 @@
+
+
+
+<div class="container" *ngIf="!info && !preview">
+   <div class="main">
+
+            <mat-card class="card">
+
+           
+        <mat-card-header>
+            <mat-card-title>
+                Set Quiz Info
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-form-field >
+                <mat-label>Organization Name</mat-label>
+                <input matInput placeholder="Organization Name" [(ngModel)]="quizInfo.organizationName">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Event Name</mat-label>
+                <input matInput placeholder="Event Name" [(ngModel)]="quizInfo.eventName">
+            </mat-form-field>
+            <mat-form-field >
+                <mat-label>Total Questions</mat-label>
+                <input matInput placeholder="Total Questions" type="number" [(ngModel)]="quizInfo.totalQuestions">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Total Time</mat-label>
+                <input matInput placeholder="Total Time" type="number" [(ngModel)]="quizInfo.totalTime">
+            </mat-form-field>
+
+            <mat-card-actions align="end">
+                <button mat-raised-button color="primary" (click)="setQuizInfo()"> Submit Info</button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+    </div>
+</div>
+
+<div class="container" *ngIf="info && !preview" >
+   <div class="main">
+
+        <mat-card class="card">
+
+        <mat-card-header>
+            <mat-card-title>
+                Set your Question
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-form-field >
+                <mat-label>Question</mat-label>
+            <input matInput placeholder="Question" [(ngModel)]="questions.question">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" >
+                <mat-label>Choose question type</mat-label>
+                <mat-select [(ngModel)]="questionType.type">
+
+                    <mat-option  [value]="typesOfQuestions[0].type" >
+                        {{typesOfQuestions[0].type}}
+                    </mat-option>
+                    <mat-option  [value]="typesOfQuestions[1].type" >
+                        {{typesOfQuestions[1].type}}
+                    </mat-option>
+                    <mat-option  [value]="typesOfQuestions[2].type" >
+                        {{typesOfQuestions[2].type}}
+                    </mat-option>
+                  
+                </mat-select>
+            </mat-form-field>
+             
+            <!-- Mcq -->
+            <mat-form-field  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+                <mat-label>option 1</mat-label>
+                <input matInput placeholder="first option" [(ngModel)]="option.option1">
+            </mat-form-field>
+            <mat-form-field   *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+                <mat-label>option 2</mat-label>
+                <input matInput placeholder="second option" [(ngModel)]="option.option2">
+            </mat-form-field>
+            <mat-form-field  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+                <mat-label>option 3</mat-label>
+                <input matInput placeholder="third option" [(ngModel)]="option.option3">
+            </mat-form-field>
+            <mat-form-field   *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+                <mat-label>option 4</mat-label>
+                <input matInput placeholder="fourth option" [(ngModel)]="option.option4">
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill"  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+                <mat-label>Choose correct Answer</mat-label>
+                <mat-select [disabled]="!(option.option1 && option.option2 && option.option3 && option.option4)"  [(ngModel)]="questions.correctAnswer">
+
+                    <mat-option [value]="option?.option1">{{option?.option1}}</mat-option>
+                    <mat-option [value]="option?.option2">{{option?.option2}}</mat-option>
+                    <mat-option [value]="option?.option3">{{option?.option3}}</mat-option>
+                    <mat-option [value]="option?.option4">{{option?.option4}}</mat-option>
+        
+                </mat-select>
+            </mat-form-field>
+
+                <!-- Face recognition -->
+                <div  *ngIf="questionType.type === 'faceRecognition'">
+                    <mat-label>Upload Image</mat-label>
+                    <input  type="file" class="form-control" name="myfile" accept="image/*"  (change)="uploadImg($event)">
+  
+                </div>
+
+
+            <mat-card-actions align="end">
+                <button mat-raised-button color="primary" *ngIf="count < quizInfo?.totalQuestions" (click)="submitQuestion()">Submit and Next</button>
+                <button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="submitQuiz()">Finish</button>
+                <button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="previewQuiz()">Preview</button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+
+    </div>
+    
+</div>
+
+
+
+<div class="preview-container" *ngIf="preview">
+    <mat-card *ngFor="let quizzes of quizBank" class="preview-card">
+     <mat-card-content>
+
+        <div  *ngIf="quizzes.type === 'faceRecognition'">
+            <mat-label>Upload Image</mat-label>
+            <input type="file" class="form-control" name="myfile" accept="image/*"  (change)="uploadImg($event)">
+        </div>
+        
+        <mat-form-field appearance="outline" >
+            <mat-label>Question</mat-label>
+        <input matInput placeholder="Question" [(ngModel)]="quizzes.question" [disabled]="!update">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+            <mat-label>Option</mat-label>
+        <input matInput placeholder="Option 1" [(ngModel)]="quizzes.options[0]" [disabled]="!update">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Option</mat-label>
+        <input matInput placeholder="Option 2" [(ngModel)]="quizzes.options[1]"  [disabled]="!update">
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline" >
+            <mat-label>Option</mat-label>
+        <input matInput placeholder="Option 3" [(ngModel)]="quizzes.options[2] " [disabled]="!update">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+            <mat-label>Option</mat-label>
+        <input matInput placeholder="Option 4" [(ngModel)]="quizzes.options[3]" [disabled]="!update">
+        </mat-form-field>
+ 
+        <mat-form-field appearance="outline" >
+            <mat-label>Correct Answer</mat-label>
+        <input matInput placeholder="correct answer" [(ngModel)]="quizzes.correctAnswer" [disabled]="!update">
+        </mat-form-field>
+
+     </mat-card-content>
+    </mat-card>
+
+
+</div>
+<button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="submitQuiz()">Finish</button>
+<button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="UpdateQuizBank()">Update</button>
