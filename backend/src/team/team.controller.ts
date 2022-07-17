@@ -1,4 +1,4 @@
-import { Controller,Post,Req } from '@nestjs/common';
+import { Controller,Post,Req,Get } from '@nestjs/common';
 import { TeamService } from './team.service';
 
 @Controller('team')
@@ -22,5 +22,13 @@ export class TeamController {
     const allowed = await this.teamService.allowToParticipate(req.body)
     return allowed
   }
+
+  @Get('get-winner')
+  async getWinner(){
+    const teams = await this.teamService.getWinner()
+    return teams
+  }
+
+
 
 }

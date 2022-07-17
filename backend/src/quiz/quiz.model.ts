@@ -16,6 +16,7 @@ export const QuizSchema = new mongoose.Schema({
         correctAnswer:{type:String}
     }
    ],
+   winner:{type:String,default:'not played yet'},
    createdAt:{type:Date,default:Date.now()}
 })
 

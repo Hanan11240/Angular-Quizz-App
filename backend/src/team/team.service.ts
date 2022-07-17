@@ -30,11 +30,11 @@ export class TeamService {
             throw new HttpException(err,404)
          }
 
-        
-          
-       
+    }
 
-
+    async getWinner(){
+        const teams = this.teamModel.find({})
+        return teams
     }
 
 }

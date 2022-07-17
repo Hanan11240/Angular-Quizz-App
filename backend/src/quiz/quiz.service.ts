@@ -1,13 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { Quiz } from './quiz.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Team } from 'src/team/team.model';
-import { response } from 'express';
+
+
 
 
 @Injectable()
 export class QuizService {
+    winnerTeam:any
     constructor(@InjectModel('Quiz') private readonly quizModel:Model<Quiz>,@InjectModel('Team') private readonly teamModel:Model<Team>){}
 
     async createQuiz(quizData:any){
@@ -60,6 +62,10 @@ export class QuizService {
             const   quizId =  await this.quizModel.find({organizationName:organizationName,eventName:eventName},{_id:1})
             return quizId 
     }
+
+
+
+
    
   
 }

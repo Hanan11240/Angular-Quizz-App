@@ -30,7 +30,7 @@ export class AdminService {
     return this.http.post(`${this.serverUrl}quiz/get-organization-quizzes`,this.user)
   }
 
-  // getQuizId(quiz:any){
-  //   return this.http.post(`${this.serverUrl}quiz/get-quiz-id`,quiz)
-  // }
+  getWinner(){
+    return this.http.get(`${this.serverUrl}team/get-winner`)
+  }
 }

@@ -24,13 +24,15 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrganizationQuizzes()
+   this.getWinner()
+
   }
 
 
   displayedColumns: string[] = ['organizationName', 'eventName', 'winner','action'];
   dataSource = []
 
-   getOrganizationQuizzes(){
+  getOrganizationQuizzes(){
     this.adminService.getOrganizationQuizzes().subscribe((res:any)=>{
 
       console.log('res----->',res)
@@ -39,4 +41,11 @@ export class AdminDashboardComponent implements OnInit {
 
     })
    }
+
+   getWinner(){
+    this.adminService.getWinner().subscribe((res:any)=>{
+      console.log('team response-->',res)
+    })
+   }
+  
 }

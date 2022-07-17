@@ -34,8 +34,9 @@ export class ResponsesService {
              console.log('teamsId---->',teamsId)
              console.log('teamId---->',teamId)
             //  const teamsScore= this.teamModel.findOneAndUpdate({_id:teamsId},{teams:{elemMatch:{_id:teamId}}},{$set:{teams:{score}}})
-             const teamsScore= this.teamModel.update({'teams._id':teamId},{'$set':{
-                'teams.$.score':score
+             const teamsScore= this.teamModel.updateOne({'teams._id':teamId},{'$set':{
+                'teams.$.score':score,
+                'teams.$.responseTime':Date.now()
              }})
             
             return teamsScore
