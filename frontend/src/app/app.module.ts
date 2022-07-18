@@ -29,6 +29,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { TeamInfoComponent } from './modules/shared/components/team-info/team-info.component';
 import { PlayQuizComponent } from './modules/shared/components/play-quiz/play-quiz.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { NgChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTableModule,
     MatTabsModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

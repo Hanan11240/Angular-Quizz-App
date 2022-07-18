@@ -8,7 +8,6 @@ export const TeamSchema = new mongoose.Schema({
    
     createdAt:{type:Date,default:Date.now()},
     score:{type:Number,default:0},
-    responseTime:{type:Number}
    
   }] ,
   quizId:{type:mongoose.Schema.Types.ObjectId,ref:'Quiz'}
@@ -23,7 +22,6 @@ export interface Team extends mongoose.Document{
         members:[string],
         createdAt:Date,
         score:number,
-        responseTime:number,
      
     }
 ];

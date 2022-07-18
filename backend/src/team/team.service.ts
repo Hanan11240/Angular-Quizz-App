@@ -21,7 +21,6 @@ export class TeamService {
         const {teamName,email,quizId}= data;
          const allowed=  await this.teamModel.find({quizId:quizId},{teams:{$elemMatch:{teamName:teamName,members:email}}})
          const [teams]= allowed
-        //  const {teams}= allowed
          if(teams && teams.teams.length>0){
              return teams
            
@@ -30,11 +29,11 @@ export class TeamService {
             throw new HttpException(err,404)
          }
 
-    }
+        
+          
+       
 
-    async getWinner(){
-        const teams = this.teamModel.find({})
-        return teams
+
     }
 
 }

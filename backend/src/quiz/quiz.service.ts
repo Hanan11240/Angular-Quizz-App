@@ -1,15 +1,14 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Quiz } from './quiz.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Team } from 'src/team/team.model';
-
-
+import { response } from 'express';
+var ObjectID = require('mongodb').ObjectID
 
 
 @Injectable()
 export class QuizService {
-    winnerTeam:any
     constructor(@InjectModel('Quiz') private readonly quizModel:Model<Quiz>,@InjectModel('Team') private readonly teamModel:Model<Team>){}
 
     async createQuiz(quizData:any){
@@ -62,10 +61,21 @@ export class QuizService {
             const   quizId =  await this.quizModel.find({organizationName:organizationName,eventName:eventName},{_id:1})
             return quizId 
     }
-
-
-
-
    
+    async getQuizBySubjects(data:any){
+        const {userId} = data
+        const quizBySubject = await this.quizModel.aggregate([
+            {$match:{userId:new ObjectID(userId)}},
+            {$group:{
+                _id:"$subject",
+                count:{$sum:1}
+            
+            }
+            
+            },{$sort:{_id:1}}
+        ])
+        console.log('graphdata',quizBySubject)
+        return quizBySubject
+    }
   
 }

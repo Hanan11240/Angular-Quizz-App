@@ -3,35 +3,37 @@
     <mat-card class="card">
         <mat-card-header>
             <mat-card-title>
-                Total Quizzes held
+                Total Quizzes Created
             </mat-card-title>
         </mat-card-header>
         
         <mat-card-content>
-            19
+            {{totalOrganizationQuizzes}}
         </mat-card-content>
     </mat-card>
   
     <mat-card class="card">
         <mat-card-header>
             <mat-card-title>
-                Total Participants
+                Total Quiz Played
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            19
+            {{totalQuizPlayed}}
         </mat-card-content>
     </mat-card>
 
     <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>
-                Quiz by Subjects
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            19
-        </mat-card-content>
+       
+        
+            <div *ngIf="doughnutChartData.datasets[0]?.data" class="ibox-content">
+
+                <canvas class="canvas" baseChart [data]="doughnutChartData" [type]="doughnutChartType">
+                 </canvas>
+
+
+            </div>
+       
     </mat-card>
 </div>
 
@@ -53,13 +55,9 @@
       
         <ng-container matColumnDef="winner">
           <th mat-header-cell *matHeaderCellDef> Winner </th>
-          <td mat-cell *matCellDef="let element">{{element.winner}}  </td>
+          <td mat-cell *matCellDef="let element">  </td>
         </ng-container>
     
-        <!-- <ng-container matColumnDef="loser">
-          <th mat-header-cell *matHeaderCellDef> Loser </th>
-          <td mat-cell *matCellDef="let element">  </td>
-        </ng-container> -->
 
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>

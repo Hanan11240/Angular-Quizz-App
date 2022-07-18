@@ -62,6 +62,12 @@ export class QuizController {
     return quizId
   }
 
-
-
+  @Post('quiz-by-subject')
+  async getQuizBySubjects(
+    @Req() req:any
+  ){
+    console.log('req.body---->',req.body)
+    const quizBySubject = await this.quizService.getQuizBySubjects(req.body)
+    return quizBySubject
+  }
 }
