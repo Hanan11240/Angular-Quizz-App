@@ -1,37 +1,21 @@
-.container{
-    content: "";
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../../../../../assets/background.png");
-    justify-content: center;
+.bg{
+background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../../../../../assets/background.png");
+
+}
+
+.form-container
+{
+    position: absolute;
+    top: 15vh;
+   
 }
 
 
-.card{
-    padding: 20px 20px;
-    border-radius: 15px;
-}
-.main{
-    width: 50%;
-    
-}
 
-.preview-card{
-    margin-bottom: 10px;
-    margin-right: 20px;
-    width: 40vw;
-}
-.preview-container{
-    display: flex;
-    
-}
-mat-card-content{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
- 
-}
+
+
+
+
 ::ng-deep {
     .mat-form-field-appearance-outline .mat-form-field-outline {
         color: blueviolet;
@@ -47,3 +31,4 @@ mat-card-content{
         }
     }
 }           
+

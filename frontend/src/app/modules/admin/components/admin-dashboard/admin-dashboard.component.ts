@@ -27,6 +27,7 @@ totalQuizPlayed:number=0
   
   public doughnutChartData: ChartData<'doughnut'> = {
     
+    
     datasets: []
   };
   public doughnutChartType: ChartType = 'doughnut';

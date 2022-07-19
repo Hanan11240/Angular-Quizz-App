@@ -1,74 +1,87 @@
 
-<div class="container">
-    <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>
-                Total Quizzes Created
-            </mat-card-title>
-        </mat-card-header>
-        
-        <mat-card-content>
-            {{totalOrganizationQuizzes}}
-        </mat-card-content>
-    </mat-card>
-  
-    <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>
-                Total Quiz Played
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            {{totalQuizPlayed}}
-        </mat-card-content>
-    </mat-card>
-
-    <mat-card class="card">
-       
-        
-            <div *ngIf="doughnutChartData.datasets[0]?.data" class="ibox-content">
-
-                <canvas class="canvas" baseChart [data]="doughnutChartData" [type]="doughnutChartType">
-                 </canvas>
-
-
-            </div>
-       
-    </mat-card>
-</div>
-
-
-<div class="quizTable">
-    <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        
-        <ng-container matColumnDef="organizationName">
-          <th mat-header-cell *matHeaderCellDef> Organization </th>
-          <td mat-cell *matCellDef="let element"> {{element.organizationName}} </td>
-        </ng-container>
-      
-    
-        <ng-container matColumnDef="eventName">
-          <th mat-header-cell *matHeaderCellDef> Event </th>
-          <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="winner">
-          <th mat-header-cell *matHeaderCellDef> Winner </th>
-          <td mat-cell *matCellDef="let element">  </td>
-        </ng-container>
-    
-
-        <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element">
-                
-                <i class="fa fa-eye-slash fa-2x text-info"></i>
+<div class="container-fluid h-100">
+    <div class="row w-100">
+    <div class="col-3">
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>
+                    Total Quizzes Created
+                </mat-card-title>
+            </mat-card-header>
             
-            </td>
-          </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+            <mat-card-content>
+                {{totalOrganizationQuizzes}}
+            </mat-card-content>
+        </mat-card>
+    </div>
+        
+      <div class="col-3">
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>
+                    Total Quiz Played
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                {{totalQuizPlayed}}
+            </mat-card-content>
+        </mat-card>
+      </div>
+       
+        <div class="col-6">
+            <mat-card class="">
+                <div *ngIf="doughnutChartData.datasets[0]?.data" style=" width: 210px; height: 200px;"class="d-flex">
+    
+                    <canvas  baseChart [data]="doughnutChartData" [type]="doughnutChartType">
+                     </canvas>
+    
+    
+                </div>
+           
+        </mat-card>
+        </div>
+       
+    </div>
+
+    <div class="row">
+
+        <div class="quizTable">
+            <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+                
+                <ng-container matColumnDef="organizationName">
+                  <th mat-header-cell *matHeaderCellDef> Organization </th>
+                  <td mat-cell *matCellDef="let element"> {{element.organizationName}} </td>
+                </ng-container>
+              
+            
+                <ng-container matColumnDef="eventName">
+                  <th mat-header-cell *matHeaderCellDef> Event </th>
+                  <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="winner">
+                  <th mat-header-cell *matHeaderCellDef> Winner </th>
+                  <td mat-cell *matCellDef="let element">  </td>
+                </ng-container>
+            
+        
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element">
+                        
+                        <i class="fa fa-eye-slash fa-2x text-info"></i>
+                    
+                    </td>
+                  </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </div>
+
+    </div>
+    
 </div>
+
+

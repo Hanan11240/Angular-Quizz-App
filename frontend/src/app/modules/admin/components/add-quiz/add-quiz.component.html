@@ -1,10 +1,10 @@
 
 
 
-<div class="container" *ngIf="!info && !preview">
-   <div class="main">
-
-            <mat-card class="card">
+<div class="container-fluid bg h-100" *ngIf="!info && !preview">
+   <div class="row justify-content-center">
+  <div class="col-11 col-sm-10 col-md-6 col-lg-4 position-relative">
+    <mat-card class="form-container d-flex flex-column w-100 shadow p-3 mb-5 bg-white rounded ">
 
            
         <mat-card-header>
@@ -13,7 +13,7 @@
             </mat-card-title>
         </mat-card-header>
 
-        <mat-card-content>
+        <mat-card-content class="d-flex flex-column">
             <mat-form-field >
                 <mat-label>Organization Name</mat-label>
                 <input matInput placeholder="Organization Name" [(ngModel)]="quizInfo.organizationName">
@@ -39,25 +39,32 @@
                 <input matInput placeholder="Total Time" type="number" [(ngModel)]="quizInfo.totalTime">
             </mat-form-field>
 
-            <mat-card-actions align="end">
-                <button mat-raised-button color="primary" (click)="setQuizInfo()"> Submit Info</button>
-            </mat-card-actions>
+            <!-- <mat-card-actions align="end"> -->
+                <button  class="btn btn-primary btn-block" (click)="setQuizInfo()"> Submit Info</button>
+            <!-- </mat-card-actions> -->
         </mat-card-content>
     </mat-card>
+  </div>
+           
     </div>
 </div>
 
-<div class="container" *ngIf="info && !preview" >
-   <div class="main">
 
-        <mat-card class="card">
+
+
+
+
+<div class="container-fluid bg h-100" *ngIf="info && !preview" >
+   <div class="row justify-content-center">
+ <div class="col-11 col-sm-10 col-md-6 col-lg-4 position-relative">
+    <mat-card class="form-container d-flex flex-column w-100 shadow p-3 mb-5 bg-white rounded ">
 
         <mat-card-header>
             <mat-card-title>
                 Set your Question
             </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="d-flex flex-column">
 
             <mat-form-field >
                 <mat-label>Question</mat-label>
@@ -120,13 +127,15 @@
                 </div>
 
 
-            <mat-card-actions align="end">
-                <button mat-raised-button color="primary" *ngIf="count < quizInfo?.totalQuestions" (click)="submitQuestion()">Submit and Next</button>
-                <button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="submitQuiz()">Finish</button>
-                <button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="previewQuiz()">Preview</button>
-            </mat-card-actions>
+           
+                <button class="btn btn-primary btn-block mb-2" *ngIf="count < quizInfo?.totalQuestions" (click)="submitQuestion()">Submit and Next</button>
+                <button class="btn btn-primary btn-block  mb-2" *ngIf="count==quizInfo?.totalQuestions" (click)="submitQuiz()">Finish</button>
+                <button class="btn btn-primary btn-block  mb-2" *ngIf="count==quizInfo?.totalQuestions" (click)="previewQuiz()">Preview</button>
+            
         </mat-card-content>
     </mat-card>
+ </div>
+       
 
     </div>
     
@@ -134,51 +143,59 @@
 
 
 
-<div class="preview-container" *ngIf="preview">
-    <mat-card *ngFor="let quizzes of quizBank" class="preview-card">
-     <mat-card-content>
-
-        <div  *ngIf="quizzes.type === 'faceRecognition'">
-            <mat-label>Upload Image</mat-label>
-            <input type="file" class="form-control" name="myfile" accept="image/*"  (change)="uploadImg($event)">
-        </div>
-        
-        <mat-form-field appearance="outline" >
-            <mat-label>Question</mat-label>
-        <input matInput placeholder="Question" [(ngModel)]="quizzes.question" [disabled]="!update">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" >
-            <mat-label>Option</mat-label>
-        <input matInput placeholder="Option 1" [(ngModel)]="quizzes.options[0]" [disabled]="!update">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Option</mat-label>
-        <input matInput placeholder="Option 2" [(ngModel)]="quizzes.options[1]"  [disabled]="!update">
-        </mat-form-field>
-
-
-
-        <mat-form-field appearance="outline" >
-            <mat-label>Option</mat-label>
-        <input matInput placeholder="Option 3" [(ngModel)]="quizzes.options[2] " [disabled]="!update">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" >
-            <mat-label>Option</mat-label>
-        <input matInput placeholder="Option 4" [(ngModel)]="quizzes.options[3]" [disabled]="!update">
-        </mat-form-field>
- 
-        <mat-form-field appearance="outline" >
-            <mat-label>Correct Answer</mat-label>
-        <input matInput placeholder="correct answer" [(ngModel)]="quizzes.correctAnswer" [disabled]="!update">
-        </mat-form-field>
-
-     </mat-card-content>
-    </mat-card>
-
+<div class="container-fluid" *ngIf="preview">
+    <div  class="row flex-wrap w-100">
+       
+<div *ngFor="let quizzes of quizBank" class="col-12 col-md-6 col-xl-4">
+    <mat-card class="m-5" >
+        <mat-card-content class="d-flex flex-column">
+   
+           <div  *ngIf="quizzes.type === 'faceRecognition'">
+               <mat-label>Upload Image</mat-label>
+               <input type="file" class="form-control" name="myfile" accept="image/*"  (change)="uploadImg($event)">
+           </div>
+           
+           <mat-form-field appearance="outline" >
+               <mat-label>Question</mat-label>
+           <input matInput placeholder="Question" [(ngModel)]="quizzes.question" [disabled]="!update">
+           </mat-form-field>
+   
+           <mat-form-field appearance="outline" >
+               <mat-label>Option</mat-label>
+           <input matInput placeholder="Option 1" [(ngModel)]="quizzes.options[0]" [disabled]="!update">
+           </mat-form-field>
+   
+           <mat-form-field appearance="outline">
+               <mat-label>Option</mat-label>
+           <input matInput placeholder="Option 2" [(ngModel)]="quizzes.options[1]"  [disabled]="!update">
+           </mat-form-field>
+   
+   
+   
+           <mat-form-field appearance="outline" >
+               <mat-label>Option</mat-label>
+           <input matInput placeholder="Option 3" [(ngModel)]="quizzes.options[2] " [disabled]="!update">
+           </mat-form-field>
+   
+           <mat-form-field appearance="outline" >
+               <mat-label>Option</mat-label>
+           <input matInput placeholder="Option 4" [(ngModel)]="quizzes.options[3]" [disabled]="!update">
+           </mat-form-field>
+    
+           <mat-form-field appearance="outline" >
+               <mat-label>Correct Answer</mat-label>
+           <input matInput placeholder="correct answer" [(ngModel)]="quizzes.correctAnswer" [disabled]="!update">
+           </mat-form-field>
+   
+        </mat-card-content>
+       </mat-card>
 
 </div>
-<button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="submitQuiz()">Finish</button>
-<button mat-raised-button color="primary" *ngIf="count==quizInfo?.totalQuestions" (click)="UpdateQuizBank()">Update</button>
+            
+     
+    </div>
+  
+    <button class="btn btn-primary me-2 justify-cente" *ngIf="count==quizInfo?.totalQuestions" (click)="submitQuiz()">Finish</button>
+    <button class="btn btn-primary me-2 justify-cente" *ngIf="count==quizInfo?.totalQuestions" (click)="UpdateQuizBank()">{{update?'Done':'update'}}</button>
+
+</div>

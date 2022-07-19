@@ -1,21 +1,23 @@
 <div class="container-fluid">
-   <div class="row">
-    <mat-card *ngFor="let quiz of allQuizzes" class="col-4 m-2 ">
-        <mat-card-content>
-            <div class="bg-img">
-            <img mat-card-image src="../../../../../assets/background.png" alt="background">
-            </div>
-            <p>Organization name: {{quiz.organizationName}}</p>
-            <p>Event name: {{quiz.eventName}}</p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <!-- <button mat-raised-button color="primary" (click)="participate(quiz)">Participate</button> -->
-            <button type="button" class="btn btn-primary" (click)="participate(quiz)">Participate</button>
-        </mat-card-actions>
-       
-    </mat-card>
+   <div class="row  flex-wrap w-100">
+    <div class="col-12 col-md-6 col-xl-4" *ngFor="let quiz of allQuizzes" >
+        <mat-card class="m-5">
+            <mat-card-content class="d-flex flex-column">
+                <div class="bg-img">
+                <img mat-card-image src="../../../../../assets/background.png" alt="background">
+                </div>
+                <p>Organization name: {{quiz.organizationName}}</p>
+                <p>Event name: {{quiz.eventName}}</p>
+            </mat-card-content>
+            
+                <button type="button" class="btn btn-primary btn-block" (click)="participate(quiz)">Participate</button>
+            
+           
+        </mat-card>
+    </div>
+    
 
-
+ 
    </div>
        
    
