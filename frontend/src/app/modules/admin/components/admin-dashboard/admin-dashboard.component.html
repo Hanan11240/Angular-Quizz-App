@@ -1,35 +1,38 @@
 
 <div class="container-fluid h-100">
     <div class="row w-100">
-    <div class="col-3">
-        <mat-card >
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-2 mt-2">
+        <mat-card class="d-flex flex-column align-items-center  ">
             <mat-card-header>
                 <mat-card-title>
                     Total Quizzes Created
                 </mat-card-title>
             </mat-card-header>
-            
-            <mat-card-content>
+           
+            <mat-card-content class="m-5 ">
+                
                 {{totalOrganizationQuizzes}}
             </mat-card-content>
         </mat-card>
     </div>
         
-      <div class="col-3">
-        <mat-card >
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-2 mt-2">
+        <mat-card class="d-flex flex-column align-items-center" >
             <mat-card-header>
                 <mat-card-title>
                     Total Quiz Played
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+          
+            <mat-card-content  class="m-5">
+                
                 {{totalQuizPlayed}}
             </mat-card-content>
         </mat-card>
       </div>
        
-        <div class="col-6">
-            <mat-card class="">
+        <div class="col-md-12 col-lg-4 mt-2 ">
+            <mat-card class="d-flex justify-content-center">
                 <div *ngIf="doughnutChartData.datasets[0]?.data" style=" width: 210px; height: 200px;"class="d-flex">
     
                     <canvas  baseChart [data]="doughnutChartData" [type]="doughnutChartType">
@@ -43,10 +46,16 @@
        
     </div>
 
-    <div class="row">
 
-        <div class="quizTable">
-            <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <div class="row w-100">
+
+        <mat-form-field  class=" col-12 col-sm-4 col-xl-2">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="search for events" #input>
+          </mat-form-field>
+
+            <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-2 mb-5 ms-3">
         
                 
                 <ng-container matColumnDef="organizationName">
@@ -77,8 +86,16 @@
               
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                  </tr>
               </table>
-        </div>
+              <mat-paginator [pageSizeOptions]="[3, 6, 12]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+            </mat-paginator>
+       
 
     </div>
     

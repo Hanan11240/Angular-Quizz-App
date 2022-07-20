@@ -30,6 +30,8 @@ import { TeamInfoComponent } from './modules/shared/components/team-info/team-in
 import { PlayQuizComponent } from './modules/shared/components/play-quiz/play-quiz.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { NgChartsModule } from 'ng2-charts';
+import {MatDividerModule} from '@angular/material/divider'
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -70,7 +72,9 @@ import { NgChartsModule } from 'ng2-charts';
     MatTabsModule,
     MatDialogModule,
     MatRadioModule,
-    NgChartsModule
+    NgChartsModule,
+    MatDividerModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

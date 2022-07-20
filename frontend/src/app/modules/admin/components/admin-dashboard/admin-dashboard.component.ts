@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { AdminService } from '../../service/admin.service';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 export interface PeriodicElement {
   organizationName: string;
@@ -19,7 +21,7 @@ export interface PeriodicElement {
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
-
+tableData:any=[]
 totalOrganizationQuizzes:any={}
 totalQuizPlayed:number=0
   constructor(private adminService:AdminService) { }
@@ -41,13 +43,23 @@ totalQuizPlayed:number=0
 
 
   displayedColumns: string[] = ['organizationName', 'eventName', 'winner','action'];
-  dataSource = []
+  dataSource =  new MatTableDataSource(this.tableData);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+
 
    getOrganizationQuizzes(){
     this.adminService.getOrganizationQuizzes().subscribe((res:any)=>{
 
       console.log('res----->',res)
-      this.dataSource= res
+      this.tableData= res
+      this.dataSource= new MatTableDataSource(this.tableData)
+      this.dataSource.paginator = this.paginator
       this.totalOrganizationQuizzes = Object.values(res).length
       console.log('data source',this.dataSource)
 
@@ -85,4 +97,10 @@ totalQuizPlayed:number=0
 
     })
    }
+
+
+   applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
