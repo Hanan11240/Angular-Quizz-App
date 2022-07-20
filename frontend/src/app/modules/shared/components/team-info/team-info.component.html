@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <mat-card>
         <mat-card-header>
             <mat-card-title>
@@ -6,7 +6,7 @@
             </mat-card-title>
 
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="d-flex flex-column">
                 <mat-form-field>
                     <mat-label>Team Name</mat-label>
                     <input matInput placeholder="team name" [(ngModel)]="playerInfo.teamName">
@@ -17,7 +17,7 @@
                     <input matInput placeholder="email" [(ngModel)]="playerInfo.email">
                 </mat-form-field>
                 <mat-card-actions>
-                    <button mat-raised-button color="primary" (click)="confirmParicipation()">Confirm your Participation</button>
+                    <button mat-raised-button color="primary"[disabled]="!user" (click)="confirmParicipation()">{{user?'Confirm your Participation':'login to participate'}}</button>
                     <button mat-raised-button color="primary" (click)="close()">Cancel</button>
                 </mat-card-actions>    
         </mat-card-content>

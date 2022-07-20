@@ -9,7 +9,7 @@
            
         <mat-card-header>
             <mat-card-title>
-                Set Quiz Info
+                Set Quiz Info 
             </mat-card-title>
         </mat-card-header>
 
@@ -73,41 +73,36 @@
 
             <mat-form-field appearance="fill" >
                 <mat-label>Choose question type</mat-label>
-                <mat-select [(ngModel)]="questionType.type">
+                <mat-select [(ngModel)]="questionType.type" >
 
-                    <mat-option  [value]="typesOfQuestions[0].type" >
-                        {{typesOfQuestions[0].type}}
+                    <mat-option  [value]="questionType.type"  *ngFor="let questionType of typesOfQuestions" >
+                        {{questionType.type}}
                     </mat-option>
-                    <mat-option  [value]="typesOfQuestions[1].type" >
-                        {{typesOfQuestions[1].type}}
-                    </mat-option>
-                    <mat-option  [value]="typesOfQuestions[2].type" >
-                        {{typesOfQuestions[2].type}}
-                    </mat-option>
+                  
                   
                 </mat-select>
             </mat-form-field>
              
             <!-- Mcq -->
-            <mat-form-field  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+            <mat-form-field  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition' || questionType.type==='Rapid Fire' || questionType.type=== 'clue Based'">
                 <mat-label>option 1</mat-label>
                 <input matInput placeholder="first option" [(ngModel)]="option.option1">
             </mat-form-field>
-            <mat-form-field   *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+            <mat-form-field   *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition' || questionType.type==='Rapid Fire' || questionType.type=== 'clue Based'">
                 <mat-label>option 2</mat-label>
                 <input matInput placeholder="second option" [(ngModel)]="option.option2">
             </mat-form-field>
-            <mat-form-field  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+            <mat-form-field  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition' || questionType.type==='Rapid Fire' || questionType.type=== 'clue Based'">
                 <mat-label>option 3</mat-label>
                 <input matInput placeholder="third option" [(ngModel)]="option.option3">
             </mat-form-field>
-            <mat-form-field   *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+            <mat-form-field   *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition' || questionType.type==='Rapid Fire' || questionType.type=== 'clue Based'">
                 <mat-label>option 4</mat-label>
                 <input matInput placeholder="fourth option" [(ngModel)]="option.option4">
             </mat-form-field>
 
 
-            <mat-form-field appearance="fill"  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition'">
+            <mat-form-field appearance="fill"  *ngIf="questionType.type === 'mcq' || questionType.type === 'faceRecognition' || questionType.type==='Rapid Fire' || questionType.type=== 'clue Based'">
                 <mat-label>Choose correct Answer</mat-label>
                 <mat-select [disabled]="!(option.option1 && option.option2 && option.option3 && option.option4)"  [(ngModel)]="questions.correctAnswer">
 
@@ -126,6 +121,16 @@
   
                 </div>
 
+
+                <!-- clue based -->
+                        <div *ngIf="questionType.type === 'clue Based'">
+                           
+                          <mat-form-field>
+                            <mat-label>Set Clue</mat-label>
+                            <input matInput placeholder="Clue" [(ngModel)]="questions.clue"> 
+                          </mat-form-field>
+                           
+                        </div>
 
            
                 <button class="btn btn-primary btn-block mb-2" *ngIf="count < quizInfo?.totalQuestions" (click)="submitQuestion()">Submit and Next</button>

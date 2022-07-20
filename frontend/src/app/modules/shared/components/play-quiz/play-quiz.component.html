@@ -1,5 +1,5 @@
 
-
+ 
 <div class="container">
     <mat-card>
         <mat-card-header>
@@ -16,7 +16,7 @@
             <div>
                 <h1>
                 Q{{questionNo -1}} {{quizInfo[0]?.quizBank[0].question}}
-                <!-- <p class="time">{{minutes}}:{{remainSeconds}}</p> -->
+                <p class="time">{{minutes}}:{{remainSeconds}}</p>
 
                 </h1>
             </div>
@@ -29,6 +29,8 @@
                             {{option}}
                     </mat-radio-button>
                 </mat-radio-group>
+                <button *ngIf="quizInfo[0].quizBank[0]?.clue" class="btn btn-info" (click)="revealClue()">Reveal Clue</button>
+                <p *ngIf="clue">{{quizInfo[0]?.quizBank[0]?.clue}}</p>
            <mat-card-actions align="end">
                         <button mat-raised-button  *ngIf="questionNo <= quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="getQuiz()">Save and Next</button>
                         <button mat-raised-button *ngIf="questionNo > quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="submitResponse()">Submit</button>

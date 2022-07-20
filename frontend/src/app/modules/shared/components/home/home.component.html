@@ -10,7 +10,7 @@
                 <p>Event name: {{quiz.eventName}}</p>
             </mat-card-content>
             
-                <button type="button" class="btn btn-primary btn-block" (click)="participate(quiz)">Participate</button>
+                <button type="button" class="btn btn-primary btn-block"  (click)="participate(quiz)">{{quiz.played ? 'Already Ended':'Participate'}}</button>
             
            
         </mat-card>

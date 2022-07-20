@@ -50,7 +50,7 @@ matchedDocument:any
     }
  
     
-  }
+  } 
 
   submitTeam(){
     this.adminService.addTeam(this.teamData).subscribe((res:any)=>{

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../service/admin.service';
 import { Router } from '@angular/router';
-import { ConditionalExpr } from '@angular/compiler';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,12 +30,16 @@ update:boolean=false
 
   typesOfQuestions=[
     {
-      type:'openEnded'
+      type:'clue Based'
     },
     {
       type:'mcq'
-    },{
+    },
+    {
       type:'faceRecognition'
+    },
+    {
+      type:'Rapid Fire'
     }
   ]
   setQuizInfo(){
@@ -48,7 +52,7 @@ update:boolean=false
   
       if(trimmedOrganizationName == "" && trimmedEventName == ""){
         alert('Fields Cannnot be empty');
-      }else{
+      }else{ 
         this.info=true
         console.log('toalquestions----->',this.totalQuestions)
         console.log('quizinfo',this.quizInfo)

@@ -22,6 +22,10 @@ export class SharedService {
     return this.http.post(`${this.serverUrl}quiz/play`,quizData)
   }
 
+  getQuizTime(quizData:any){
+    return this.http.post(`${this.serverUrl}quiz/get-time`,quizData)
+  }
+
 
   submitResponse(finalResponse:any){
     console.log('service response',finalResponse)

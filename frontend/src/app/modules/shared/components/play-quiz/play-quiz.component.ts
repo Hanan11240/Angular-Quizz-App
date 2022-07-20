@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
+ 
 @Component({
   selector: 'app-play-quiz',
   templateUrl: './play-quiz.component.html',
@@ -23,6 +23,10 @@ finalResponse:any={}
 minutes:number=0
 seconds:number=0
 remainSeconds:number=0
+clue:boolean=false
+quizTime:any={}
+
+
 
   constructor(private route:ActivatedRoute,private sharedService:SharedService,private _sanitizer: DomSanitizer) { }
 
@@ -30,35 +34,44 @@ remainSeconds:number=0
   console.log(this.route.snapshot.paramMap.get('id'))
   localStorage.setItem('quizId',this.route.snapshot.paramMap.get('id') || '')
   localStorage.setItem('questionNo',this.questionNo)
- 
+  this.getQuizTime()
   this.getQuiz()
   
 
   }
 
 
-//   timer()
-//   {
-//     this.minutes=this.quizInfo[0].totalTime
+  timer()
+  {
+    this.minutes=this.quizTime[0]?.totalTime
   
-//    this.seconds=this.minutes*60
-//   this.remainSeconds=0;
-//   const intervalId = setInterval(() => {
-//     this.seconds = this.seconds - 1;
-//     this.minutes=Math.floor(this.seconds/60);
-//     this.remainSeconds=this.seconds%60;
-//     console.log(this.seconds)
-//     if(this.seconds == 0)
+   this.seconds=this.minutes*60
+  this.remainSeconds=0;
+  const intervalId = setInterval(() => {
+    this.seconds = this.seconds - 1;
+    this.minutes=Math.floor(this.seconds/60);
+    this.remainSeconds=this.seconds%60;
+    console.log(this.seconds)
+    if(this.seconds == 0)
    
-//     { this.submitResponse()
-//       clearInterval(intervalId) ; }
-// }, 1000)
+    { this.submitResponse()
+      clearInterval(intervalId) ; }
+}, 1000)
 
-// }
+}
 
   
 
-
+getQuizTime(){
+    this.quizData._id=localStorage.getItem('quizId')
+    
+   
+  this.sharedService.getQuizTime(this.quizData).subscribe((res:any)=>{
+        console.log('quiztime',res)
+        this.quizTime=res
+        this.timer()
+  })
+}
 
   getQuiz(){
     this.quizData._id=localStorage.getItem('quizId')
@@ -114,4 +127,8 @@ remainSeconds:number=0
     })
      
   }
+  revealClue(){
+    this.clue=!this.clue
+  }
+
 }

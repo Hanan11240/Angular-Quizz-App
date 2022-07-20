@@ -12,6 +12,7 @@ export const QuizSchema = new mongoose.Schema({
     winnerTeam:{type:String,default:'Not Played Yet'},
    quizBank:[
     {
+        clue:{type:String,defult:null},
         image:{type:String,default:null},
         type:{type: String},
         question:{type:String},
@@ -37,6 +38,7 @@ export interface Quiz extends mongoose.Document{
 
     quizBank:[
         {
+            clue:string,
             image:String,
             type:{type: String},
             question:{type:String},

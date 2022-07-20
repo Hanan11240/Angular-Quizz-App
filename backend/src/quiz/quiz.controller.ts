@@ -35,6 +35,16 @@ export class QuizController {
     return allQuizzes
   }
 
+  @Post('get-time')
+  async getQuizTime(
+    @Req() req:any
+  ){
+    console.log('quizbody--->controller',req.body)
+   
+      const quizTime = await this.quizService.getQuizTime(req.body) 
+      return quizTime
+  }
+
   @Post('play')
   async getQuiz(
     @Req() req:any

@@ -77,5 +77,13 @@ export class QuizService {
         console.log('graphdata',quizBySubject)
         return quizBySubject
     }
+
+   async getQuizTime(body:any){
+    const {_id}= body
+    const quizTime = await this.quizModel.find({_id:_id},{_id:0,totalTime:1})
+    
+    return quizTime
+
+   }
   
 }

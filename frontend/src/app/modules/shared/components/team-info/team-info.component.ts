@@ -11,10 +11,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TeamInfoComponent implements OnInit {
 playerInfo:any={}
+user:any={}
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,public dialog:MatDialog,private sharedService: SharedService,
   private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.user = localStorage.getItem('userId') || ''
   }
 
 
