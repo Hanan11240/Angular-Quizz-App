@@ -11,6 +11,8 @@ export class RegisterComponent implements OnInit {
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
+
+    this.getAllOrganizations()
   }
 
   signUp(){
@@ -18,6 +20,14 @@ export class RegisterComponent implements OnInit {
         console.log('registered user',res)
         this.userModel={}
     })
+
+    
+  }
+
+  getAllOrganizations(){
+      this.authService.getAllOrganizations().subscribe((res:any)=>{
+        console.log('all organization',res)
+      })
   }
 
 } 

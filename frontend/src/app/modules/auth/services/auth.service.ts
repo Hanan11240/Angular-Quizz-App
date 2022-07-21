@@ -18,5 +18,9 @@ export class AuthService {
   login(authModel:any){
     return this.http.post(`${this.serverUrl}user/login`,authModel)
   }
+
+  getAllOrganizations(){
+    return this.http.get(`${this.serverUrl}quiz/get-all-organizations`)
+  }
 }
  

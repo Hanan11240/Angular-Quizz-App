@@ -80,4 +80,12 @@ export class QuizController {
     const quizBySubject = await this.quizService.getQuizBySubjects(req.body)
     return quizBySubject
   }
+
+  @Get('get-all-organizations')
+
+  async getAllOrganizations(){
+    const allOrganizations = await this.quizService.getAllOrganizations()
+    return allOrganizations
+  }
+
 }

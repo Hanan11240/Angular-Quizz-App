@@ -1,14 +1,9 @@
+.bg{
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../../../../../assets/background.png");
+    }
 
 
 
-.container{
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    background-color: #EAEDED
-}
 mat-card{
     width: 50%;
 }

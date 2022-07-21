@@ -20,7 +20,7 @@ export class ResponsesService {
         let score=0;
        
             const saveResponse= await new  this.responseModel(data)
-            const savedResponse = saveResponse.save((err:any)=>{
+             saveResponse.save((err:any)=>{
                 if(err){
                     throw new HttpException('Somthing went wrong while saving your response',409)
                 }
@@ -34,53 +34,41 @@ export class ResponsesService {
                 if(element.correctAnswer==saveResponse.responses[i].response)
                     score++;
              })
-             console.log('teamsId---->',teamsId)
-             console.log('teamId---->',teamId)
-            //  const teamsScore= this.teamModel.findOneAndUpdate({_id:teamsId},{teams:{elemMatch:{_id:teamId}}},{$set:{teams:{score}}})
-             const teamsScore= this.teamModel.updateOne({'teams._id':teamId},{'$set':{
+
+        
+             const teamsScore= await this.teamModel.updateOne({'teams._id':teamId},{'$set':{
                 'teams.$.score':score
              }})
 
-    //    const winnerTeam   =     this.teamModel.aggregate([
-    //             {"$project":{
-    //                 "teams":{
-    //                     "$arrayElemAt":[
-    //                         {"$filter":{
-    //                             "input":"$teams",
-    //                             "as":"res",
-    //                             "cond":{
-    //                                 "$eq":[
-    //                                    "$$res.score",
-    //                                    {"$max":{
-    //                                     "$map":{
-    //                                         "input":"$teams",
-    //                                         "as":"out",
-    //                                         "in":"$$out.score"
 
-    //                                     }
-    //                                    }} 
-    //                                 ]
-    //                             }
-    //                         }},
-    //                         0
-    //                     ]
-    //                 }
-    //             }},
-    //             {"$group":{
-    //                 "_id":"$teams.teamName",
-    //                 "quizId":{"$first":quizId},
-    //             }}
-    //         ])
+
                 
                await  this.quizModel.findOneAndUpdate({_id:quizId},{$set:{
                     played:true,
-                }})
-
-                // await this.quizModel.findOneAndUpdate({_id:quizId},{$set:{winnerTeam:winnerTeam[0]._id }})
-            
-
-            
-            return teamsScore
+                }})           
+                
+                
+                const winner= await this.teamModel.aggregate(
+                    [
+                    { "$unwind": "$teams"},
+                    { "$group": {
+                        "_id": { 
+                            "teamsId": "$_id",
+                            "teamName": "$teams.teamName",
+                        "teamScore":"$teams.score",
+                        }, 
+                    }},
+                 {$sort:{"_id.teamScore":-1}},
+                 {$limit:1}
+                ]
+                 )
+                 console.log('winner ',winner)
+               const teamWins = await this.quizModel.findOneAndUpdate({_id:quizId},{$set:{
+                winnerTeam:winner[0]._id.teamName
+               }})
+              
+        
+            return winner
             
     }
 }

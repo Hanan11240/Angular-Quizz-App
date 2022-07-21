@@ -31,7 +31,7 @@ matchedDocument:any
   addTeam(){
     
     if(this.count<2){
-
+ 
 
       const members=Object.values(this.member)
       this.teamData.quizId =this.quizId

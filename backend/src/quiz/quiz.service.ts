@@ -85,5 +85,16 @@ export class QuizService {
     return quizTime
 
    }
-  
+   
+
+  async getAllOrganizations(){
+    const allOrganizations = await this.quizModel.aggregate([
+        {
+            $group:{_id:"organizationName"}
+        }
+    ])
+    return allOrganizations
+  }
+
+
 }

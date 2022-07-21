@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -25,10 +25,11 @@ seconds:number=0
 remainSeconds:number=0
 clue:boolean=false
 quizTime:any={}
+intervalId:any
 
 
 
-  constructor(private route:ActivatedRoute,private sharedService:SharedService,private _sanitizer: DomSanitizer) { }
+  constructor(private router:Router, private route:ActivatedRoute,private sharedService:SharedService,private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   console.log(this.route.snapshot.paramMap.get('id'))
@@ -47,7 +48,7 @@ quizTime:any={}
   
    this.seconds=this.minutes*60
   this.remainSeconds=0;
-  const intervalId = setInterval(() => {
+  this.intervalId = setInterval(() => {
     this.seconds = this.seconds - 1;
     this.minutes=Math.floor(this.seconds/60);
     this.remainSeconds=this.seconds%60;
@@ -55,7 +56,7 @@ quizTime:any={}
     if(this.seconds == 0)
    
     { this.submitResponse()
-      clearInterval(intervalId) ; }
+      clearInterval(this.intervalId) ; }
 }, 1000)
 
 }
@@ -71,7 +72,7 @@ getQuizTime(){
         this.quizTime=res
         this.timer()
   })
-}
+} 
 
   getQuiz(){
     this.quizData._id=localStorage.getItem('quizId')
@@ -82,9 +83,15 @@ getQuizTime(){
       this.quizInfo=res
       this.questionId.push(this.quizInfo[0].quizBank[0]._id) 
       console.log('questionId----->',this.questionId)
-      // this.timer()
+    
       this.responseSaved=true
     
+      if(this.quizInfo[0]?.quizBank[0]?.type==='Rapid Fire'){
+        setTimeout(()=>{
+             this.save()
+
+        },5000)
+      }
 
      
 
@@ -110,6 +117,8 @@ getQuizTime(){
 
 
   submitResponse(){
+
+    clearInterval(this.intervalId)
       this.responses.forEach((element:any,i:any)=>element.questionId= this.questionId[i])
 
       console.log('final response ',this.responses)
@@ -121,6 +130,9 @@ getQuizTime(){
 
     this.sharedService.submitResponse(this.finalResponse).subscribe((res:any)=>{
       console.log('responsesaved',res)
+      this.router.navigate(['/home'])
+
+    
 
 
      

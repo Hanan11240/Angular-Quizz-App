@@ -1,42 +1,39 @@
 
- 
-<div class="container">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                <p>Organization Name:  {{quizInfo[0]?.organizationName}}</p>
-                <p>Event Name:  {{quizInfo[0]?.eventName}}</p>
-                <p>Total Questions:  {{quizInfo[0]?.totalQuestions}}</p>
-                <p>Created:{{quizInfo[0]?.createdAt | date}}</p>
-               
-            </mat-card-title>
-        </mat-card-header>
-     
-        <mat-card-content class="content">
-            <div>
-                <h1>
-                Q{{questionNo -1}} {{quizInfo[0]?.quizBank[0].question}}
-                <p class="time">{{minutes}}:{{remainSeconds}}</p>
-
-                </h1>
-            </div>
-            <div class="images" *ngIf="quizInfo[0]?.quizBank[0]?.type=='faceRecognition'">
-                <img  mat-card-image [src]="image" alt="img">
-
-            </div>
-                <mat-radio-group  [(ngModel)]="response.response" > 
-                    <mat-radio-button *ngFor="let option of quizInfo[0]?.quizBank[0]?.options" [value]="option" >
-                            {{option}}
-                    </mat-radio-button>
-                </mat-radio-group>
-                <button *ngIf="quizInfo[0].quizBank[0]?.clue" class="btn btn-info" (click)="revealClue()">Reveal Clue</button>
-                <p *ngIf="clue">{{quizInfo[0]?.quizBank[0]?.clue}}</p>
-           <mat-card-actions align="end">
-                        <button mat-raised-button  *ngIf="questionNo <= quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="getQuiz()">Save and Next</button>
-                        <button mat-raised-button *ngIf="questionNo > quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="submitResponse()">Submit</button>
-                        <button mat-raised-button color="primary" [disabled]="!responseSaved"  (click)="save()">Save response</button>
-                        
-           </mat-card-actions>
-        </mat-card-content>
-    </mat-card>
+  <!-- <p>Organization Name:  {{quizInfo[0]?.organizationName}}</p>
+  <p>Event Name:  {{quizInfo[0]?.eventName}}</p>
+  <p>Total Questions:  {{quizInfo[0]?.totalQuestions}}</p>
+  <p>Created:{{quizInfo[0]?.createdAt | date}}</p> -->
+<div class="container-fluid bg h-100">
+  <div class="row justify-content-center pt-5" >
+    <div class="col-12 col-sm-10">
+        <mat-card class=" d-flex flex-column w-80 shadow p-3 mb-5 bg-white rounded"> 
+            <mat-card-header>
+                <mat-card-title>
+                   <div class="mb-2"> Q{{questionNo -1}} {{quizInfo[0]?.quizBank[0].question}}</div>
+                    <div class="time">{{minutes}}:{{remainSeconds}}</div>
+                </mat-card-title>
+            </mat-card-header>
+         
+            <mat-card-content class="contain">
+                <div class="images" *ngIf="quizInfo[0]?.quizBank[0]?.type=='faceRecognition'">
+                    <img  mat-card-image [src]="image" alt="img">
+    
+                </div>
+                    <mat-radio-group  [(ngModel)]="response.response" > 
+                        <mat-radio-button *ngFor="let option of quizInfo[0]?.quizBank[0]?.options" [value]="option" >
+                                {{option}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <button *ngIf="quizInfo[0].quizBank[0]?.clue" class="btn btn-info" (click)="revealClue()">Reveal Clue</button>
+                    <p *ngIf="clue">{{quizInfo[0]?.quizBank[0]?.clue}}</p>
+               <mat-card-actions align="end">
+                            <button mat-raised-button  *ngIf="questionNo <= quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="getQuiz()">Save and Next</button>
+                            <button mat-raised-button *ngIf="questionNo > quizInfo[0]?.totalQuestions" [disabled]="responseSaved" (click)="submitResponse()">Submit</button>
+                            <button mat-raised-button color="primary" [disabled]="!responseSaved"  (click)="save()">Save response</button>
+                            
+               </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
 </div>
