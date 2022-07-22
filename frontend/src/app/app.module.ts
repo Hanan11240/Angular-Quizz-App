@@ -32,6 +32,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { NgChartsModule } from 'ng2-charts';
 import {MatDividerModule} from '@angular/material/divider'
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { AddOrganizationComponent } from './modules/admin/components/add-organization/add-organization.component';
 
 
 
@@ -48,6 +49,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AddTeamsComponent,
     TeamInfoComponent,
     PlayQuizComponent,
+    AddOrganizationComponent,
     
 
 

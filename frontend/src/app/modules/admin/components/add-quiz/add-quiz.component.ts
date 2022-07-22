@@ -21,11 +21,13 @@ totalQuestions:any={}
 quizDataReceived:any=[]
 count:any=0
 preview:boolean=false;
-update:boolean=false
+update:boolean=false;
+organizationName:any={}
 
   constructor( private adminService:AdminService,private router:Router) { }
 
   ngOnInit(): void {
+    this.organizationName = localStorage.getItem('organizationName')
   }
 
   typesOfQuestions=[
@@ -43,6 +45,7 @@ update:boolean=false
     }
   ]
   setQuizInfo(){
+    this.quizInfo.organizationName= this.organizationName
     if(!(this.quizInfo.organizationName &&  this.quizInfo?.eventName && this.quizInfo.totalQuestions && this.quizInfo.totalTime) ){
       alert('fields cannot be empty')
     }else{

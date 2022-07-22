@@ -5,9 +5,9 @@
     <mat-card-content>
         <mat-form-field appearance="fill">
             <mat-label>Organization Name</mat-label>
-            <mat-select >
+            <mat-select [(ngModel)]="organizationData.organizationName">
 
-                <mat-option [value]=""></mat-option>
+                <mat-option [value]="organization?.organizationName" *ngFor="let organization of organizations">{{organization?.organizationName}}</mat-option>
               
     
             </mat-select>

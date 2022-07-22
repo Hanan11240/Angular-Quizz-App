@@ -22,5 +22,9 @@ export class AuthService {
   getAllOrganizations(){
     return this.http.get(`${this.serverUrl}quiz/get-all-organizations`)
   }
+
+  getOrganizations(){
+    return this.http.get(`${this.serverUrl}organization/get-organizations`)
+  }
 }
  

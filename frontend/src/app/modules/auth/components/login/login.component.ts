@@ -16,12 +16,15 @@ authModel:any={}
 
   login(){
     this.authService.login(this.authModel).subscribe((res:any)=>{
-      console.log("logged in",res)
+      // console.log("logged in",res)
       const user = res
-      console.log('user',user)
+      // console.log('userdata--------',user)
+
       const _id= user[0]._id
-      console.log('user',_id)
+      const organizationName=user[0].organizationId?.organizationName
+      console.log('organization name',organizationName)
      localStorage.setItem('userId',_id)
+     localStorage.setItem('organizationName',organizationName)
       this.authModel={}
 
       this.router.navigate(['/home'])

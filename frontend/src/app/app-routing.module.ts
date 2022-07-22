@@ -7,6 +7,7 @@ import { HomeComponent } from './modules/shared/components/home/home.component';
 import { AuthComponent } from './modules/auth/components/auth/auth.component';
 import { AddTeamsComponent } from './modules/admin/components/add-teams/add-teams.component';
 import { PlayQuizComponent } from './modules/shared/components/play-quiz/play-quiz.component';
+import { AddOrganizationComponent } from './modules/admin/components/add-organization/add-organization.component';
 
 const routes: Routes = [
   {path:'',pathMatch:'full',redirectTo:'home'},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'admin-dashboard',component:AdminDashboardComponent},
   {path:'authenticate',component:AuthComponent},
   {path:'add-teams',component:AddTeamsComponent},
-  {path:'play-quiz/:id/:teamsId/:teamId',component:PlayQuizComponent}
+  {path:'play-quiz/:id/:teamsId/:teamId',component:PlayQuizComponent},
+  {path:'add-organization',component:AddOrganizationComponent}
 
 ];
 

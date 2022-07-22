@@ -33,7 +33,7 @@ user:any={}
       Swal.fire(`${error.error.message}`)
     })
     
-  }
+  } 
 
   close(){
     this.dialog.closeAll()

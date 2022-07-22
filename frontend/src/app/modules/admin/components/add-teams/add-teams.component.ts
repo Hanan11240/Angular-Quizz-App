@@ -10,7 +10,7 @@ import { AdminService } from '../../service/admin.service';
 export class AddTeamsComponent implements OnInit {
 teams:any=[]
 member:any={}
-quizId:any={}
+quizId:any
 teamData:any={}
 team:any={}
 maxTeams:any=2
@@ -18,6 +18,7 @@ count:any=0
 totalQuizzes:any=[]
 quizData:any={}
 matchedDocument:any
+organizationName:any={}
 
 
 
@@ -26,6 +27,7 @@ matchedDocument:any
 
   ngOnInit(): void {
     this.getOrganizationQuizzes()
+    this.organizationName = localStorage.getItem('organizationName')
   }
 
   addTeam(){
@@ -41,7 +43,7 @@ matchedDocument:any
       console.log('team',this.teamData)
       this.member={}
       this.quizData={}
-      this.quizId={}
+      this.quizId=''
       this.team={}
       this.count++
    
@@ -49,7 +51,7 @@ matchedDocument:any
       Swal.fire(` maximum teams can be upto ${this.maxTeams}`)
     }
  
-    
+     
   } 
 
   submitTeam(){
@@ -71,6 +73,7 @@ matchedDocument:any
 
 
    getquizId(){
+    this.quizData.organizationName = this.organizationName
    this.matchedDocument= this.totalQuizzes.find((element:any)=> element.organizationName== this.quizData.organizationName && element.eventName==this.quizData.eventName)
   console.log('match',this.matchedDocument)
   this.quizId= this.matchedDocument._id

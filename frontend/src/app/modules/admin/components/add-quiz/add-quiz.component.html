@@ -16,7 +16,7 @@
         <mat-card-content class="d-flex flex-column">
             <mat-form-field >
                 <mat-label>Organization Name</mat-label>
-                <input matInput placeholder="Organization Name" [(ngModel)]="quizInfo.organizationName">
+                <input matInput placeholder="Organization Name" disabled [ngModel]="organizationName">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Event Name</mat-label>

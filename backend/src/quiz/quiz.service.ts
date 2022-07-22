@@ -38,7 +38,7 @@ export class QuizService {
     async getQuiz(quizData:any){
         console.log('quizData',quizData)
             const {_id,questionNo}= quizData
-        const question =  this.quizModel.find({_id:_id},{quizBank:{$slice:[questionNo-1,1]}},{correctAnswer:0})
+        const question =  this.quizModel.find({_id:_id},{quizBank:{$slice:[questionNo-1,1]}})
         return question
     }
 

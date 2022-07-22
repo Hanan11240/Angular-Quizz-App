@@ -35,5 +35,9 @@ export class AdminService {
     return this.http.post(`${this.serverUrl}quiz/quiz-by-subject`,this.user)
   }
 
+
+  addOrganization(organizartionData:any){
+    return this.http.post(`${this.serverUrl}organization/add-organization`,organizartionData)
+  }
  
 }

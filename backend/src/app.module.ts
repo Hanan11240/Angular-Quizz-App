@@ -6,9 +6,10 @@ import { QuizModule } from './quiz/quiz.module';
 import { UserModule } from './user/user.module';
 import { TeamModule } from './team/team.module';
 import { ResponsesModule } from './responses/responses.module';
+import { OrganizationModule } from './organization/organization.module';
 
 @Module({
-  imports: [QuizModule,MongooseModule.forRoot('mongodb://localhost:27017/quiz-project'), UserModule, TeamModule, ResponsesModule],
+  imports: [QuizModule,MongooseModule.forRoot('mongodb://localhost:27017/quiz-project'), UserModule, TeamModule, ResponsesModule, OrganizationModule],
   controllers: [AppController],
   providers: [AppService],
 })

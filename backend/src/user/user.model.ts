@@ -4,7 +4,7 @@ import * as mongoose from 'mongoose'
 export const UserSchema = new mongoose.Schema({
    
     firstName:{type: String},
-    organizationId:{type:mongoose.Schema.Types.ObjectId,ref:'Quiz'},
+    organizationId:{type:mongoose.Schema.Types.ObjectId,ref:'Organization'},
     lastName:{type:String},
     email:{type:String},
     password:{type:String},

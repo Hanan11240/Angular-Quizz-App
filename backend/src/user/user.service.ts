@@ -16,7 +16,11 @@ export class UserService {
      }
 
      async login(data:any){
-        const user = await this.userModel.find({email:data.email,password:data.password})
+        const user = await this.userModel.find({email:data.email,password:data.password}).populate({
+                    path:'organizationId',
+                    select:'organizationName'
+        })
+
         if(user){
             console.log('user',user)
             return user

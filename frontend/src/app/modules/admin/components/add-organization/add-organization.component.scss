@@ -1,0 +1,34 @@
+.bg{
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../../../../../assets/background.png");
+    
+    }
+    
+    .form-container
+    {
+        position: absolute;
+        top: 15vh;
+       
+    }
+    
+    
+    
+    
+    
+    
+    
+    ::ng-deep {
+        .mat-form-field-appearance-outline .mat-form-field-outline {
+            color: blueviolet;
+            
+            
+        }
+        mat-form-field {
+            .mat-hint,
+            input,
+             ::placeholder,
+            .mat-form-field-label {
+                color: black;
+            }
+        }
+    }           
+    

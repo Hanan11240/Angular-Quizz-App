@@ -1,0 +1,53 @@
+
+
+
+<div class="container-fluid bg h-100">
+    <div class="row justify-content-center">
+   <div class="col-11 col-sm-10 col-md-6 col-lg-4 position-relative">
+     <mat-card class="form-container d-flex flex-column w-100 shadow p-3 mb-5 bg-white rounded ">
+ 
+            
+         <mat-card-header>
+             <mat-card-title>
+                 Add new Organization 
+             </mat-card-title>
+         </mat-card-header>
+ 
+         <mat-card-content class="d-flex flex-column">
+             <mat-form-field >
+                 <mat-label>Organization Name</mat-label>
+                 <input matInput placeholder="Organization Name" [(ngModel)]="organizartionData.organizationName">
+             </mat-form-field>
+             <mat-form-field>
+                 <mat-label>adddress</mat-label>
+                 <input matInput placeholder="address" [(ngModel)]="organizartionData.address">
+             </mat-form-field>
+ 
+                  <mat-form-field>
+                 <mat-label>Contact</mat-label>
+                 <input matInput placeholder="phone no" type="number" [(ngModel)]="organizartionData.contact">
+             </mat-form-field>
+ 
+ 
+             <!-- <mat-card-actions align="end"> -->
+                 <button  class="btn btn-primary btn-block" (click)="addOrganization()">Add organization</button>
+             <!-- </mat-card-actions> -->
+         </mat-card-content>
+     </mat-card>
+   </div>
+            
+     </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+          
+ 
+            
+                
+    
+ 
