@@ -10,3 +10,17 @@
         top: 15vh;
        
     }
+
+
+
+mat-icon{
+    cursor: pointer;
+}
+
+mat-icon:hover{
+    background-color: rgb(193, 175, 175);
+}
+
+.disable{
+    pointer-events:none;
+}

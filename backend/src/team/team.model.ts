@@ -14,7 +14,7 @@ export const TeamSchema = new mongoose.Schema({
 
 })
  
-
+ 
 export interface Team extends mongoose.Document{
     teams:[
         {

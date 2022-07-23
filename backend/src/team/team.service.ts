@@ -24,7 +24,7 @@ export class TeamService {
          if(teams && teams.teams.length>0){
              return teams
            
-         }else{
+         }else{ 
             const err= 'Your are not part of this quiz'
             throw new HttpException(err,404)
          }
