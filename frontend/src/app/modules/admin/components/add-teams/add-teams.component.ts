@@ -15,8 +15,6 @@ member:any
 quizId:any
 teamData:any={}
 team:any={}
-maxTeams:any=2
-count:any=0
 totalQuizzes:any=[]
 quizData:any={}
 matchedDocument:any
@@ -26,7 +24,8 @@ createTeam:boolean=false
 addedMember:number=0
 members:any=[]
 totalMembers:number=0
-
+allowUpdateMember:boolean=false
+memberToUpdate:any
 
 
 
@@ -42,6 +41,11 @@ totalMembers:number=0
 
 
   addTeamInfo(){
+    if(this.teamInfo.noOfTeams ==1 )
+    {
+      Swal.fire('No of Teams participating must atleast be 2')
+      return
+    }
   this.teamData.quizId =this.quizId
     this.createTeam=true
      
@@ -68,6 +72,24 @@ totalMembers:number=0
 
   }
 
+editMember(teamMember:any){
+  this.allowUpdateMember=true
+  this.memberToUpdate=teamMember
+  
+    console.log('memberindex',teamMember)
+ 
+}
+
+
+updateMember(){   
+  console.log('member',this.member)
+  console.log('member to updatee',this.memberToUpdate)
+ const indexToUpdate = this.members.findIndex((element:any)=> element==this.memberToUpdate)
+ console.log('index',indexToUpdate)
+ this.members.splice(indexToUpdate,1,this.member)
+ this.member=''
+ this.allowUpdateMember=false;
+}
 
 
 
