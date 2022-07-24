@@ -3,7 +3,6 @@ import { Quiz } from './quiz.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Team } from 'src/team/team.model';
-import { response } from 'express';
 var ObjectID = require('mongodb').ObjectID
 
 
@@ -43,16 +42,7 @@ export class QuizService {
     }
 
 
-    async saveResponse(data:any){
-            const {teamsId,teamId} = data
-                console.log('data',data)
-                let responses = data.responses
-                console.log('responses',responses)
-        const team= await this.teamModel.findOneAndUpdate({_id:teamsId},{teams:{$elemMatch:{_id:teamId}}},{$set:{'teams.responses':responses}})
-                    
-                   return team
-
-    }
+   
 
    async getQuizId(quiz:any){
     const {organizationName,eventName}= quiz

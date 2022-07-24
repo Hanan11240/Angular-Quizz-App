@@ -53,16 +53,16 @@ export class QuizController {
     return question
   }
   
-  @Put('submit-response')
+  // @Put('submit-response')
 
-  async saveResponses(
-    @Req() req:any
-  ){
+  // async saveResponses(
+  //   @Req() req:any
+  // ){
 
-    const score= await this.quizService.saveResponse(req.body)
-    return score
+  //   const score= await this.quizService.saveResponse(req.body)
+  //   return score
 
-  }
+  // }
 
   @Post('get-quiz-id')
   async getQuizId(

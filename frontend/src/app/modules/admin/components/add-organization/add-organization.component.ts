@@ -12,7 +12,10 @@ organizartionData:any={}
   ngOnInit(): void {
   }
 
+
+
   addOrganization(){
+       
           this.adminService.addOrganization(this.organizartionData).subscribe((res:any)=>{
             console.log('res',res)
           })

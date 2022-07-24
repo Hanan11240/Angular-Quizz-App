@@ -1,12 +1,9 @@
 
-  <!-- <p>Organization Name:  {{quizInfo[0]?.organizationName}}</p>
-  <p>Event Name:  {{quizInfo[0]?.eventName}}</p>
-  <p>Total Questions:  {{quizInfo[0]?.totalQuestions}}</p>
-  <p>Created:{{quizInfo[0]?.createdAt | date}}</p> -->
-<div class="container-fluid bg h-100">
-  <div class="row justify-content-center pt-5" >
-    <div class="col-12 col-sm-10">
-        <mat-card class=" d-flex flex-column w-80 shadow p-3 mb-5 bg-white rounded"> 
+
+<div class="container-fluid bg h-100" *ngIf="!warning">
+  <div class="row w-100  pt-5" >
+    <div class="col-12  col-md-8 ">
+        <mat-card class=" d-flex w-100 flex-column w-80 shadow p-3 mb-5 bg-white rounded"> 
             <mat-card-header>
                 <mat-card-title>
                    <div class="mb-2"> Q{{questionNo -1}} {{quizInfo[0]?.quizBank[0].question}}</div>
@@ -36,4 +33,35 @@
         </mat-card>
     </div>
   </div>
+</div>
+
+
+<div class="container-fluid bg h-100" *ngIf="warning">
+    <div class="row w-100 pt-5" >
+        <div class="col-12 col-md-10">
+            <mat-card class=" w-100 d-flex  flex-column shadow p-3 mb-5 bg-white rounded"> 
+                <mat-card-header>
+                    <mat-card-title>
+                       <div class="mb-2 text-warning">Warning!!!</div>
+                       
+                    </mat-card-title>
+                </mat-card-header>
+                        <mat-card-content>
+                            <p class="h6 ">This event is organized by <strong> {{quizInfo[0]?.organizationName}}</strong> and reservers rights to eliminat any team for any illegal means.Before attempting quiz you should read following instruction carefully!!!</p>
+                            <ul class="h5 text-secondary">
+                                <li class="">Time for this quiz is <strong> {{quizInfo[0].totalTime}} minutes</strong>  after which you woun't be able to submit your responses any futher.</li>
+                                <li>There may be <strong>different types of questions</strong> in this quiz.</li>
+                                <li>There would be no time limit on individual questions <strong>except for rapid fire questions</strong> where you will have only <strong>10 seconds</strong> to submit your response.</li>
+                                <li>If reponse for rapid fire questions was not saved under given time(10s) the reponse will be <strong>saved</strong> automatically.</li>
+                                <li>While playing quiz <strong>do not  go back to previous page</strong>.Doing such you woun't able to join the quiz again. </li>
+                                <li>While playing quiz <strong>do not  refresh the page</strong> .Doing such you have to play quiz all over again. </li>
+                                <li>After pressing <strong>Ok</strong> button you would be directed to quize page </li>
+                            </ul>
+                        </mat-card-content>
+                        <button class="btn btn-primary" (click)="toggle()">Ok</button>
+                </mat-card>
+
+               
+        </div>
+    </div>
 </div>

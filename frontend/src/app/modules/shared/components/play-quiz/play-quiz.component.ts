@@ -26,6 +26,7 @@ remainSeconds:number=0
 clue:boolean=false
 quizTime:any={}
 intervalId:any
+warning:boolean=true
 
 
 
@@ -70,7 +71,7 @@ getQuizTime(){
   this.sharedService.getQuizTime(this.quizData).subscribe((res:any)=>{
         console.log('quiztime',res)
         this.quizTime=res
-        this.timer()
+       
   })
 } 
 
@@ -78,23 +79,21 @@ getQuizTime(){
     this.quizData._id=localStorage.getItem('quizId')
     this.quizData.questionNo= localStorage.getItem('questionNo')
     this.sharedService.getQuiz(this.quizData).subscribe((res:any)=>{
-
       console.log('resposne',res)
       this.quizInfo=res
       this.questionId.push(this.quizInfo[0].quizBank[0]._id) 
       console.log('questionId----->',this.questionId)
-    
       this.responseSaved=true
-    
+
+
+
       if(this.quizInfo[0]?.quizBank[0]?.type==='Rapid Fire'){
         setTimeout(()=>{
              this.save()
 
         },5000)
       }
-
-     
-
+      
       if(this.quizInfo[0].quizBank[0].image){
         this.image =this._sanitizer.bypassSecurityTrustResourceUrl(`${this.quizInfo[0].quizBank[0].image}`)
       }
@@ -141,6 +140,13 @@ getQuizTime(){
   }
   revealClue(){
     this.clue=!this.clue
+  }
+
+
+
+  toggle(){
+    this.warning=false
+    this.timer()
   }
 
 }
