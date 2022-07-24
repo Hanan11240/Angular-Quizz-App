@@ -77,9 +77,9 @@
         
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
-                    <td mat-cell *matCellDef="let element">
+                    <td mat-cell *matCellDef="let row">
                         
-                        <i class="fa fa-eye-slash fa-2x text-info"></i>
+                        <i class="fa fa-eye-slash fa-2x text-info" (click)="resultInfo(row)"></i>
                     
                     </td>
                   </ng-container>

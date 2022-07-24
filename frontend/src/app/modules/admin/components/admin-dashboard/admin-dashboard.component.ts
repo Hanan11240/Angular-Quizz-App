@@ -3,6 +3,8 @@ import { AdminService } from '../../service/admin.service';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { ResultInfoComponent } from '../result-info/result-info.component';
 
 export interface PeriodicElement {
   organizationName: string;
@@ -24,7 +26,7 @@ export class AdminDashboardComponent implements OnInit {
 tableData:any=[]
 totalOrganizationQuizzes:any={}
 totalQuizPlayed:number=0
-  constructor(private adminService:AdminService) { }
+  constructor(private adminService:AdminService,public dialog:MatDialog) { }
 
   
   public doughnutChartData: ChartData<'doughnut'> = {
@@ -102,5 +104,11 @@ totalQuizPlayed:number=0
    applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  resultInfo(data:any){
+      this.dialog.open(ResultInfoComponent,{
+        data:data
+      })
   }
 }
