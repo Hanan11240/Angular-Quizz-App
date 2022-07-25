@@ -91,7 +91,7 @@ getQuizTime(){
         setTimeout(()=>{
              this.save()
 
-        },5000)
+        },10000)
       }
       
       if(this.quizInfo[0].quizBank[0].image){

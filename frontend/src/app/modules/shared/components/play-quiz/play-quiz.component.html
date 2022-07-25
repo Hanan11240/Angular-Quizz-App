@@ -4,12 +4,13 @@
   <div class="row w-100  pt-5" >
     <div class="col-12  col-md-8 ">
         <mat-card class=" d-flex w-100 flex-column w-80 shadow p-3 mb-5 bg-white rounded"> 
-            <mat-card-header>
-                <mat-card-title>
-                   <div class="mb-2"> Q{{questionNo -1}} {{quizInfo[0]?.quizBank[0].question}}</div>
-                    <div class="time">{{minutes}}:{{remainSeconds}}</div>
+            
+                <mat-card-title class="w-100 d-flex justify-content-between">
+                   <div class="mb-2"> Q{{questionNo -1}} {{quizInfo[0]?.quizBank[0].question}} ?</div>
+                   <div class=>Question Type: <small> {{quizInfo[0]?.quizBank[0].type}} </small> </div>
+                   <div class="time">{{minutes}}:{{remainSeconds}}</div>
                 </mat-card-title>
-            </mat-card-header>
+            
          
             <mat-card-content class="contain">
                 <div class="images" *ngIf="quizInfo[0]?.quizBank[0]?.type=='faceRecognition'">
