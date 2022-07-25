@@ -1,1 +1,29 @@
-<p>result-info works!</p>
+    <div class="container">
+        <div class="row">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        Participated Teams
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p><strong>
+                        <ul>
+                            <li *ngFor="let team of teamData[0]?.teams">
+                                {{team.teamName}}
+                                <ol> <small class="text-primary"> Members in Team</small> 
+                                    <li *ngFor="let member of team.members">
+                                    
+                                        {{member}}
+                                    </li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </strong></p>
+                    <h3>Winner Team</h3>
+                    <p><strong>{{quizData}} </strong> </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        
+    </div>

@@ -23,4 +23,12 @@ export class TeamController {
     return allowed
   }
 
+  @Post('get-Teams')
+  async getTeams(
+    @Req() req:any
+  ){
+    const teams =  await this.teamService.getTeams(req.body)
+    return teams
+  }
+
 }

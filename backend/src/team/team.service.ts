@@ -3,7 +3,7 @@ import { Team } from './team.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Quiz } from 'src/quiz/quiz.model';
-
+ 
 
 @Injectable()
 export class TeamService {
@@ -19,7 +19,9 @@ export class TeamService {
 
     async allowToParticipate(data:any){
         const {teamName,email,quizId}= data;
+        console.log('data---->',data)
          const allowed=  await this.teamModel.find({quizId:quizId},{teams:{$elemMatch:{teamName:teamName,members:email}}})
+            console.log('allowed---->',allowed)
          const [teams]= allowed
          if(teams && teams.teams.length>0){
              return teams
@@ -34,6 +36,13 @@ export class TeamService {
        
 
 
+    }
+
+   async getTeams(quiz:any){
+    const {quizId}= quiz
+    console.log('quiz id',quizId)
+        const teams = await this.teamModel.find({quizId:quizId})
+        return teams 
     }
 
 }

@@ -5,6 +5,8 @@ import { Model } from 'mongoose';
 import { Response } from './responses.model';
 import { Quiz } from 'src/quiz/quiz.model';
 import { Team } from 'src/team/team.model';
+import { Types } from 'mongoose';
+
 
 @Injectable()
 export class ResponsesService {
@@ -18,7 +20,7 @@ export class ResponsesService {
     
         const {quizId,teamsId,teamId}= data;
         let score=0;
-       
+            
             const saveResponse= await new  this.responseModel(data)
              saveResponse.save((err:any)=>{
                 if(err){
@@ -47,28 +49,38 @@ export class ResponsesService {
                     played:true,
                 }})           
                 
-                
-                const winner= await this.teamModel.aggregate(
-                    [
+
+      
+
+                const teams: any =  new Types.ObjectId(teamsId) 
+          
+              const winnerTeam =    await this.teamModel.aggregate([
+                    {"$match":{"_id":teams}},
                     { "$unwind": "$teams"},
                     { "$group": {
-                        "_id": { 
-                            "teamsId": "$_id",
-                            "teamName": "$teams.teamName",
-                        "teamScore":"$teams.score",
-                        }, 
-                    }},
-                 {$sort:{"_id.teamScore":-1}},
-                 {$limit:1}
-                ]
-                 )
-                 console.log('winner ',winner)
+                                 "_id": { 
+                                    
+                                "teamsId": "$_id",
+                                "teamName": "$teams.teamName",
+                            "teamScore":"$teams.score",
+                            }, 
+                            }},
+                      {$sort:{"_id.teamScore":-1}},
+                          {$limit:1}
+                ])
+
+                   console.log('winner team',winnerTeam)
+
+              
+                
                const teamWins = await this.quizModel.findOneAndUpdate({_id:quizId},{$set:{
-                winnerTeam:winner[0]._id.teamName
+                winnerTeam:winnerTeam[0]._id.teamName
                }})
+
+
               
         
-            return winner
+            return winnerTeam
             
     }
 }

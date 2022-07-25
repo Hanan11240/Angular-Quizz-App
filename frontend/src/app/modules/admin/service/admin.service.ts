@@ -39,5 +39,9 @@ export class AdminService {
   addOrganization(organizartionData:any){
     return this.http.post(`${this.serverUrl}organization/add-organization`,organizartionData)
   }
+
+  getTeams(quiz:any){
+    return this.http.post(`${this.serverUrl}team/get-teams`,quiz)
+  }
  
 }
