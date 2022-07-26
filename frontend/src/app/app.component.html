@@ -3,7 +3,7 @@
 
 
   <mat-toolbar>
-    <button (click)="opened=!opened" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button (click)="checkRole()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
     <button>
@@ -23,22 +23,22 @@
           <a class="home" [routerLink]="'/home'">Home</a>
         </mat-list-item>
 
-        <mat-list-item  class="list">
+        <mat-list-item  *ngIf="role=='super-admin'" class="list">
           <mat-icon>add</mat-icon>
           <a [routerLink]="'/add-organization'">Add organization</a>
       </mat-list-item>
 
-        <mat-list-item  class="list">
+        <mat-list-item *ngIf="role=='admin'"  class="list">
           <mat-icon>add</mat-icon>
           <a [routerLink]="'/admin/add-quiz'">Add Quiz</a>
         </mat-list-item>
 
-        <mat-list-item  class="list">
+        <mat-list-item  *ngIf="role=='admin'" class="list">
           <mat-icon>add</mat-icon>
           <a [routerLink]="'/add-teams'">Add Teams </a>
       </mat-list-item>
 
-        <mat-list-item  class="list">
+        <mat-list-item *ngIf="role=='admin'"  class="list">
           <mat-icon>dashboard</mat-icon>
           <a [routerLink]="'/admin-dashboard'">Dashboard</a>
         </mat-list-item>

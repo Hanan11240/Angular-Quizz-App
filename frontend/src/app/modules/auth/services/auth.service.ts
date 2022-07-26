@@ -7,12 +7,14 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
+  user:any
   serverUrl=environment.serverURL
   constructor(private http:HttpClient) { }
 
 
   signUp(userModel:any){
-    return this.http.post(`${this.serverUrl}user/register`,userModel)
+     this.user = this.http.post(`${this.serverUrl}user/register`,userModel)
+     return this.user
   }
 
   login(authModel:any){
