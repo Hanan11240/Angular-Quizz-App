@@ -19,7 +19,7 @@ user:any={}
     this.user = localStorage.getItem('userId') || ''
   }
 
-
+ 
   confirmParicipation(){
     console.log('data',this.data)
     this.playerInfo.quizId= this.data._id

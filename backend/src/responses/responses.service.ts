@@ -16,8 +16,7 @@ export class ResponsesService {
     @InjectModel ('Team') private readonly teamModel:Model<Team>
     ){}
 
-    async saveResponse(data:any){
-    
+    async saveResponse(data:any){ 
         const {quizId,teamsId,teamId}= data;
         let score=0;
             
@@ -27,7 +26,6 @@ export class ResponsesService {
                     throw new HttpException('Somthing went wrong while saving your response',409)
                 }
             })
-           
            
 
              const correspondingQuiz = await this.quizModel.find({_id:quizId},{quizBank:1,_id:0})

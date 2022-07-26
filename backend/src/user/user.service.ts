@@ -32,7 +32,9 @@ export class UserService {
         })
       
         console.log('data.email',data.email)
-        if(!user){
+        console.log(user.length)
+        
+        if(user.length < 1){
             const error="no user found"
             throw new HttpException(error,409)
         }else{

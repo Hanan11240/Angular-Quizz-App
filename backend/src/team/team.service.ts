@@ -21,6 +21,7 @@ export class TeamService {
         const {teamName,email,quizId}= data;
         console.log('data---->',data)
          const allowed=  await this.teamModel.find({quizId:quizId},{teams:{$elemMatch:{teamName:teamName,members:email}}})
+      
             console.log('allowed---->',allowed)
          const [teams]= allowed
          if(teams && teams.teams.length>0){
@@ -30,12 +31,6 @@ export class TeamService {
             const err= 'Your are not part of this quiz'
             throw new HttpException(err,404)
          }
-
-        
-          
-       
-
-
     }
 
    async getTeams(quiz:any){
