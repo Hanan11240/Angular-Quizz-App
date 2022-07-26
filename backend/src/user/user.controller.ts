@@ -1,4 +1,4 @@
-import { Controller,Post,Req } from '@nestjs/common';
+import { Controller,Post,Req,Res } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -16,10 +16,11 @@ export class UserController {
 
   @Post('login')
    async login(
-    @Req() req:any
+    @Req() req:any,
+    @Res() res:any
    ){
     const user= await this.userService.login(req.body)
-    return user
+    res.status(200).json(user)
    }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -29,6 +30,10 @@ this.organizationData={}
     this.authService.signUp(this.userModel).subscribe((res:any)=>{
         console.log('registered user',res)
         this.userModel={}
+    },(error:any)=>{
+      Swal.fire(error.error.message)
+    },()=>{
+      
     })
 
     

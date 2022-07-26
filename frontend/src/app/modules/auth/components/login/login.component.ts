@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { DataServiceService } from 'src/app/data-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +32,11 @@ authModel:any={}
       this.authModel={}
 
       this.router.navigate(['/home'])
+    },error=>{
+     
+      Swal.fire(error.error.message)
+    },()=>{
+
     })
   }
 
