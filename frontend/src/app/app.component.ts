@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { AuthService } from './modules/auth/services/auth.service';
 import { DataServiceService } from './data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +16,16 @@ export class AppComponent {
   ngOnInit(): void {
   
   }
- constructor(private authService:AuthService, private dataService:DataServiceService){
+ constructor(private authService:AuthService, private dataService:DataServiceService,private router:Router){
 
  }
  
  
+ 
   logout(){
     localStorage.clear()
+    window.location.reload();
+    this.router.navigate(['/authenticate'])
   }
 checkRole(){
   this.opened=!this.opened
