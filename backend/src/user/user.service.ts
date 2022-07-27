@@ -10,7 +10,7 @@ export class UserService {
     constructor(@InjectModel('User') private readonly userModel:Model<User>){}
      async signUp(data:any){
          
-        if(!(data.organization && data.email && data.password && data.firstName && data.lastName) ){
+        if(!(data.organizationName && data.email && data.password && data.firstName && data.lastName) ){
             throw new HttpException('Some fields are empty',409)
         }
 

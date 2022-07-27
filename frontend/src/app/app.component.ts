@@ -31,6 +31,7 @@ export class AppComponent {
   logout(){
     localStorage.clear()
     window.location.reload();
+    
   
   }
 checkRole(){

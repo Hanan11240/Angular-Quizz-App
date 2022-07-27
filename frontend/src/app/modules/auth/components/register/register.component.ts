@@ -19,11 +19,14 @@ export class RegisterComponent implements OnInit {
   }
 
   signUp(){
+    console.log('console.log organization',this.organizations)
    this.organizations.find((element:any)=>{
       if(element.organizationName== this.organizationData.organizationName){
         this.userModel.organizationId = element._id
+        this.userModel.organizationName= element.organizationName
       }
    })
+   
 this.organizationData={}
    console.log('userModel',this.userModel)
 

@@ -18,6 +18,7 @@ organizartionData:any={}
        
           this.adminService.addOrganization(this.organizartionData).subscribe((res:any)=>{
             console.log('res',res)
+            this.organizartionData={}
           })
   }
 
