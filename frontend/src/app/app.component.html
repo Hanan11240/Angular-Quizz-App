@@ -4,7 +4,7 @@
 
   <mat-toolbar>
     <button (click)="checkRole()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
+      <mat-icon>{{!opened ?'menu':'close' }}</mat-icon>
     </button>
     <button>
       <mat-icon (click)="logout()" title="logout">logout</mat-icon>
